@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import './App.css';
 import { Delete } from './components/produtos';
+import { Post } from './components/post';
+
 
 function App() {
 

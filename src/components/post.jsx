@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 export function Post(){
 
 const [novoProduto, setNovoProduto] = useState({ nome_produto: '', preco_unidade: 0, fornecedor_id: 0 ,categoria_id:0,estoque:0});

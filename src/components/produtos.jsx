@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
 
 export function Delete() {
   const [produtos, setProdutos] = useState([]);
@@ -14,6 +13,7 @@ export function Delete() {
         console.error('Erro:', error);
       }
     };
+
 
     listarProdutos();
   }, []);
@@ -34,8 +34,6 @@ export function Delete() {
       console.error('Erro:', error);
     }
   };
-  
-
   return (
     <>
       <div>
@@ -43,8 +41,10 @@ export function Delete() {
         <ul>
           {produtos.map((produto, index) => (
             <div key={index}>
+              <li>id produto: {produto.produto_id}</li>
               <li>{produto.nome_produto}</li>
               <li>Preço: {produto.preco_unidade}</li>
+              
               <button onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
             </div>
           ))}
@@ -53,4 +53,3 @@ export function Delete() {
     </>
   );
 }
-
