@@ -5,7 +5,6 @@ export function Post(){
 const [novoProduto, setNovoProduto] = useState({ nome_produto: '', preco_unidade: 0, fornecedor_id: 0 ,categoria_id:0,estoque:0});
 
 const adicionarNovoProduto = () => {
-  // Fazer uma solicitação POST para a rota do servidor backend
   fetch('http://localhost:5000/produtos/insert', {
     method: 'POST',
     headers: {
