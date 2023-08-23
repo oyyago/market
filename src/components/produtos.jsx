@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EditProduto from './update';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Delete() {
   const [produtos, setProdutos] = useState([]);
@@ -68,20 +69,35 @@ export function Delete() {
 
   return (
     <>
-      <div>
-        <h2>Lista de Produtos</h2>
-        <ul>
-          {produtos.map((produto, index) => (
-            <div key={index}>
-              <li>id produto: {produto.produto_id}</li>
-              <li>{produto.nome_produto}</li>
-              <li>Preço: {produto.preco_unidade}</li>
-              <button onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
-              <button onClick={() => iniciarEdicao(produto)}>Editar</button>
-            </div>
-          ))}
-        </ul>
-      </div>
+<div>
+  <h2>Lista de Produtos</h2>
+  <table class="table table-striped-columns">
+    <thead>
+      <tr>
+        <th scope="col">Nome do Produto</th>
+        <th scope="col">Preço</th>
+        <th scope="col">Fornecedor</th>
+        <th  scope="col">Categoria</th>
+        <th scope="col"> Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {produtos.map((produto, index) => (
+        <tr key={index}>
+          <td>{produto.nome_produto}</td>
+          <td>{produto.preco_unidade}</td>
+          <td>{produto.nome}</td>
+          <td>{produto.nome_categoria}</td>
+          <td>
+            <button class="btn btn-secondary btn-lg" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
+            <button class="btn btn-primary btn-lg" onClick={() => iniciarEdicao(produto)}>Editar</button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 
       {editProduto && (
         <EditProduto
