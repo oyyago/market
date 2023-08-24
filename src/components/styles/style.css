@@ -1,0 +1,43 @@
+body {
+    color: #73879C;
+    background: #2A3F54;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.471;
+  }
+  
+  .top_nav {
+    display: block;
+    margin-left: 230px;
+    height: 50px;
+  }
+  
+  .left_col {
+    background: #2A3F54;
+    width: 230px;
+    padding: 0;
+    min-height: 100%;
+    position: absolute;
+    display: flex;
+    z-index: 1;
+  }
+  
+  .nav.side-menu > li {
+    position: relative;
+    display: block;
+    cursor: pointer;
+  }
+  
+  .nav.side-menu > li > a {
+    margin-bottom: 6px;
+    color: #E7E7E7;
+    font-weight: 500;
+  }
+  
+  .right_col {
+    padding: 10px 20px;
+    margin-left: 230px;
+    background: #F7F7F7;
+  }
+  

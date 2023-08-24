@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import EditProduto from './update';
+import EditProduto from '../update/update';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function Delete() {
+export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [editProduto, setEditProduto] = useState(null);
 
@@ -27,7 +27,7 @@ export function Delete() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id: produto_id }),
+        body: JSON.stringify({ id: produto_id }),        
       });
       if (response.ok) {
         setProdutos(produtos.filter((produto) => produto.produto_id !== produto_id));
@@ -35,6 +35,7 @@ export function Delete() {
     } catch (error) {
       console.error('Erro:', error);
     }
+    console.log(produto_id)
   };
 
   const iniciarEdicao = (produto) => {
@@ -53,6 +54,7 @@ export function Delete() {
           preco: dadosEditados.preco_unidade,
           id: editProduto.produto_id,
         }),
+
       });
       if (response.ok) {
         setEditProduto(null);
@@ -71,7 +73,7 @@ export function Delete() {
     <>
 <div>
   <h2>Lista de Produtos</h2>
-  <table class="table table-striped-columns">
+  <table className="table table-striped-columns">
     <thead>
       <tr>
         <th scope="col">Nome do Produto</th>
@@ -89,8 +91,8 @@ export function Delete() {
           <td>{produto.nome}</td>
           <td>{produto.nome_categoria}</td>
           <td>
-            <button class="btn btn-secondary btn-lg" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
-            <button class="btn btn-primary btn-lg" onClick={() => iniciarEdicao(produto)}>Editar</button>
+            <button className="btn btn-secondary btn-lg" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
+            <button className="btn btn-primary btn-lg" onClick={() => iniciarEdicao(produto)}>Editar</button>
           </td>
         </tr>
       ))}

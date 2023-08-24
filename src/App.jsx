@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Delete } from './components/produtos';
-import { Post } from './components/post';
+import { Main } from './components/main';
 
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
 
   return (
     <>
-    <Post/>
-    <Delete/>
+    <Main/>
     </>
   );
 }
