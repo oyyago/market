@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import EditProduto from '../update/update';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Modal from 'react-modal';
+
 
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [editProduto, setEditProduto] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  // Função que abre a modal
 
   useEffect(() => {
     listarProdutos();
@@ -40,6 +45,7 @@ export function Produtos() {
 
   const iniciarEdicao = (produto) => {
     setEditProduto(produto);
+    
   };
 
   const salvarEdicao = async (dadosEditados) => {
@@ -67,7 +73,18 @@ export function Produtos() {
 
   const cancelarEdicao = () => {
     setEditProduto(null);
+    
   };
+
+
+  function abrirModal() {
+    setIsOpen(true);
+  }
+
+  // Função que fecha a modal
+  function fecharModal() {
+    setIsOpen(false);
+  }
 
   return (
     <>
@@ -102,12 +119,21 @@ export function Produtos() {
 
 
       {editProduto && (
-        <EditProduto
-          produto={editProduto}
-          onSave={salvarEdicao}
-          onCancel={cancelarEdicao}
-        />
+              <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={fecharModal}
+              contentLabel="Modal de exemplo"
+            >        <EditProduto
+            produto={editProduto}
+            onSave={salvarEdicao}
+            onCancel={cancelarEdicao}
+          />
+                        <button onClick={fecharModal}>Fechar</button>
+            </Modal>  
+
       )}
+      <button onClick={abrirModal}>Abrir modal</button>
+
     </>
   );
 }
