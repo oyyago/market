@@ -22,19 +22,7 @@ body {
     display: flex;
     z-index: 1;
   }
-  
-  .nav.side-menu > li {
-    position: relative;
-    display: block;
-    cursor: pointer;
-  }
-  
-  .nav.side-menu > li > a {
-    margin-bottom: 6px;
-    color: #E7E7E7;
-    font-weight: 500;
-  }
-  
+
   .right_col {
     padding: 10px 20px;
     margin-left: 230px;

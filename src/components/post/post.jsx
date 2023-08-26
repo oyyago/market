@@ -6,7 +6,7 @@ import {
   Button,
 } from './styled';
 
-export function Post() {
+export function Post({ cancel }) {
   const [novoProduto, setNovoProduto] = useState({
     nome_produto: '',
     preco_unidade: 0,
@@ -30,7 +30,7 @@ export function Post() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data); 
+        console.log(data);
         //setProdutos([...produtos, data.produto]);
         //setNovoProduto({ nome_produto: '', preco_unidade: 0 });
       })
@@ -82,6 +82,7 @@ export function Post() {
         }
       />
       <Button onClick={adicionarNovoProduto}>Adicionar Produto</Button>
+      <Button onClick={cancel}> cancelar</Button>
     </Container>
   );
 }

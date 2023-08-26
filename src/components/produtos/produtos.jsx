@@ -7,8 +7,8 @@ import { Post } from '../post/post';
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [editProduto, setEditProduto] = useState(null);
-  const [addModalIsOpen, setAddModalIsOpen] = useState(false); // Estado para o modal de adição
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false); // Estado para o modal de edição
+  const [addModalIsOpen, setAddModalIsOpen] = useState(false); 
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false); 
 
   useEffect(() => {
     listarProdutos();
@@ -68,6 +68,11 @@ export function Produtos() {
     setEditProduto(null);
   };
 
+
+  const cancelarCriacao = () => {
+    setAddModalIsOpen(false);
+  };
+
   const iniciarEdicao = (produto) => {
     setEditProduto(produto);
     setEditModalIsOpen(true);
@@ -84,7 +89,7 @@ export function Produtos() {
         <button className='btn btn-primary' onClick={cadastrarProduto}>Adicionar produto</button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={() => setAddModalIsOpen(false)}>
-          <Post />
+          <Post cancel={cancelarCriacao} />
         </Modal>
 
         <table className="table table-striped-columns">
