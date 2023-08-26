@@ -1,4 +1,4 @@
-import { Produtos } from './tabela/produtos'
+import { Produtos } from './produtos/produtos'
 import './styles/style.css'
 
 export function Main() {
@@ -24,6 +24,8 @@ export function Main() {
                 <div className="nav_menu">
                     <div className="toggle">
                         teste
+            
+            
                     </div>
                 </div>
             </div>

@@ -1,69 +1,87 @@
 import React, { useState } from 'react';
+import {
+  Container,
+  Title,
+  Input,
+  Button,
+} from './styled';
 
-export function Post(){
-
-const [novoProduto, setNovoProduto] = useState({ nome_produto: '', preco_unidade: 0, fornecedor_id: 0 ,categoria_id:0,estoque:0});
-
-const adicionarNovoProduto = () => {
-  fetch('http://localhost:5000/produtos/insert', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      nome: novoProduto.nome_produto,
-      preco: novoProduto.preco_unidade,
-      fornecedor: novoProduto.fornecedor_id,
-      categoria: novoProduto.categoria_id,
-      estoque: novoProduto.estoque,
-    }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data); 
-      //setProdutos([...produtos, data.produto]);
-      //setNovoProduto({ nome_produto: '', preco_unidade: 0 });
+export function Post() {
+  const [novoProduto, setNovoProduto] = useState({
+    nome_produto: '',
+    preco_unidade: 0,
+    fornecedor_id: 0,
+    categoria_id: 0,
+    estoque: 0,
+  });
+  const adicionarNovoProduto = () => {
+    fetch('http://localhost:5000/produtos/insert', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nome: novoProduto.nome_produto,
+        preco: novoProduto.preco_unidade,
+        fornecedor: novoProduto.fornecedor_id,
+        categoria: novoProduto.categoria_id,
+        estoque: novoProduto.estoque,
+      }),
     })
-    .catch(error => {
-      console.error('Erro:', error);
-    });
-};
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); 
+        //setProdutos([...produtos, data.produto]);
+        //setNovoProduto({ nome_produto: '', preco_unidade: 0 });
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+      });
+  };
 
-return (
-  <>
-    <div>
-      <h2>Adicionar Novo Produto</h2>
-      <input
+  return (
+    <Container>
+      <Title>Adicionar Novo Produto</Title>
+      <Input
         type="text"
         placeholder="Nome do Produto"
         value={novoProduto.nome_produto}
-        onChange={(e) => setNovoProduto({ ...novoProduto, nome_produto: e.target.value })}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, nome_produto: e.target.value })
+        }
       />
-      <input
+      <Input
         type="number"
         placeholder="Preço por Unidade"
         value={novoProduto.preco_unidade}
-        onChange={(e) => setNovoProduto({ ...novoProduto, preco_unidade: e.target.value })}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, preco_unidade: e.target.value })
+        }
       />
-      <input
+      <Input
         type="number"
-        placeholder="fornecedor id"
+        placeholder="Fornecedor ID"
         value={novoProduto.fornecedor_id}
-        onChange={(e) => setNovoProduto({ ...novoProduto, fornecedor_id: e.target.value })}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, fornecedor_id: e.target.value })
+        }
       />
-              <input
+      <Input
         type="number"
-        placeholder="categoria id"
+        placeholder="Categoria ID"
         value={novoProduto.categoria_id}
-        onChange={(e) => setNovoProduto({ ...novoProduto, categoria_id: e.target.value })}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, categoria_id: e.target.value })
+        }
       />
-              <input
-        placeholder="estoque id"
+      <Input
+        placeholder="Estoque"
         value={novoProduto.estoque}
-        onChange={(e) => setNovoProduto({ ...novoProduto, estoque: e.target.value })}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, estoque: e.target.value })
+        }
       />
-      <button onClick={adicionarNovoProduto}>Adicionar Produto</button>
-    </div>
-  </>
-);
-};
+      <Button onClick={adicionarNovoProduto}>Adicionar Produto</Button>
+    </Container>
+  );
+}
