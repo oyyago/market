@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EditProduto from '../update/update';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal } from '../modal/modal';
+import { Modal } from '../../modal/modal';
 import { Post } from '../post/post';
 
 export function Produtos() {
@@ -23,7 +23,7 @@ export function Produtos() {
       console.error('Erro:', error);
     }
   };
-
+  
   const excluirProduto = async (produto_id) => {
     try {
       const response = await fetch('http://localhost:5000/produtos/delete', {

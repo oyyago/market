@@ -1,24 +1,23 @@
-// EditProdutoStyles.js
 import styled from 'styled-components';
 
-export const EditProdutoContainer = styled.div`
+export const EditFornecedorContainer = styled.div`
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 
-export const EditProdutoHeader = styled.h2`
+export const EditFornecedorHeader = styled.h2`
   font-size: 24px;
   margin-bottom: 20px;
 `;
 
-export const EditProdutoLabel = styled.label`
+export const EditFornecedorLabel = styled.label`
   display: block;
   margin-bottom: 5px;
 `;
 
-export const EditProdutoInput = styled.input`
+export const EditFornecedorInput = styled.input`
   width: 100%;
   padding: 5px;
   margin-bottom: 10px;
@@ -26,7 +25,7 @@ export const EditProdutoInput = styled.input`
   border-radius: 4px;
 `;
 
-export const EditProdutoButton = styled.button`
+export const EditFornecedorButton = styled.button`
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -40,7 +39,7 @@ export const EditProdutoButton = styled.button`
   }
 `;
 
-export const EditProdutoCancelButton = styled.button`
+export const EditFornecedorCancelButton = styled.button`
   background-color: #dc3545;
   color: #fff;
   padding: 10px 20px;
