@@ -6,7 +6,9 @@ import {
   Button,
 } from './styled';
 
-export function Post({ cancel }) {
+export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recarregarProdutos como propriedade
+  console.log('isOpen:', isOpen);
+
   const [novoProduto, setNovoProduto] = useState({
     nome_produto: '',
     preco_unidade: 0,
@@ -14,33 +16,36 @@ export function Post({ cancel }) {
     categoria_id: 0,
     estoque: 0,
   });
-  const adicionarNovoProduto = () => {
-    fetch('http://localhost:5000/produtos/insert', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        nome: novoProduto.nome_produto,
-        preco: novoProduto.preco_unidade,
-        fornecedor: novoProduto.fornecedor_id,
-        categoria: novoProduto.categoria_id,
-        estoque: novoProduto.estoque,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        //setProdutos([...produtos, data.produto]);
-        //setNovoProduto({ nome_produto: '', preco_unidade: 0 });
-      })
-      .catch(error => {
-        console.error('Erro:', error);
+
+  const adicionarNovoProduto = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/produtos/insert', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome: novoProduto.nome_produto,
+          preco: novoProduto.preco_unidade,
+          fornecedor: novoProduto.fornecedor_id,
+          categoria: novoProduto.categoria_id,
+          estoque: novoProduto.estoque,
+        }),
       });
+
+      if (response.ok) {
+        cancel();
+        recarregarProdutos();
+      } else {
+        console.error('Erro ao criar o produto.');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+    }
   };
 
   return (
-    <Container>
+    <Container style={{ display: isOpen ? 'block' : 'none' }}>
       <Title>Adicionar Novo Produto</Title>
       <Input
         type="text"
@@ -82,7 +87,7 @@ export function Post({ cancel }) {
         }
       />
       <Button onClick={adicionarNovoProduto}>Adicionar Produto</Button>
-      <Button onClick={cancel}> cancelar</Button>
+      <Button onClick={cancel}>Cancelar</Button>
     </Container>
   );
 }

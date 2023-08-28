@@ -1,5 +1,6 @@
 // Main.jsx
 import React from 'react';
+import './styles/style.css'
 import { Link } from 'react-router-dom';
 
 export function Main() {
@@ -12,7 +13,7 @@ export function Main() {
             <li>
               <ul className="child_menu">
                 <li>
-                  <Link to="/">Produtos</Link>
+                  <Link to="/produtos">Produtos</Link>
                 </li>
                 <li>
                   <Link to="/fornecedores">Fornecedores</Link>
@@ -28,7 +29,7 @@ export function Main() {
         </div>
       </div>
       <div className="right_col" role="main">
-        {/* O componente da rota será renderizado aqui */}
+          
       </div>
     </div>
   );

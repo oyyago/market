@@ -7,8 +7,8 @@ import { Post } from '../post/post';
 export function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [editProduto, setEditProduto] = useState(null);
-  const [addModalIsOpen, setAddModalIsOpen] = useState(false); 
-  const [editModalIsOpen, setEditModalIsOpen] = useState(false); 
+  const [addModalIsOpen, setAddModalIsOpen] = useState(false);
+  const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
   useEffect(() => {
     listarProdutos();
@@ -23,7 +23,7 @@ export function Produtos() {
       console.error('Erro:', error);
     }
   };
-  
+
   const excluirProduto = async (produto_id) => {
     try {
       const response = await fetch('http://localhost:5000/produtos/delete', {
@@ -57,7 +57,7 @@ export function Produtos() {
       });
       if (response.ok) {
         setEditProduto(null);
-        listarProdutos();
+        listarProdutos(); // Recarrega os produtos após a edição bem-sucedida
       }
     } catch (error) {
       console.error('Erro:', error);
@@ -67,7 +67,6 @@ export function Produtos() {
   const cancelarEdicao = () => {
     setEditProduto(null);
   };
-
 
   const cancelarCriacao = () => {
     setAddModalIsOpen(false);
@@ -80,7 +79,7 @@ export function Produtos() {
 
   const cadastrarProduto = () => {
     setAddModalIsOpen(true);
-  }
+  };
 
   return (
     <>
@@ -88,9 +87,10 @@ export function Produtos() {
         <h2>Lista de Produtos</h2>
         <button className='btn btn-primary' onClick={cadastrarProduto}>Adicionar produto</button>
 
-        <Modal isOpen={addModalIsOpen} setModalOpen={() => setAddModalIsOpen(false)}>
-          <Post cancel={cancelarCriacao} />
-        </Modal>
+        <Modal isOpen={addModalIsOpen} setModalOpen={setAddModalIsOpen}>
+  <Post cancel={cancelarCriacao} isOpen={addModalIsOpen} recarregarProdutos={listarProdutos} />
+</Modal>
+
 
         <table className="table table-striped-columns">
           <thead>

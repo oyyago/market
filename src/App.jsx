@@ -1,5 +1,6 @@
+// App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Observe que estamos usando Routes em vez de Switch
 import { Main } from './components/main';
 import { Produtos } from './components/produtos/produtos/produtos';
 import { Fornecedores } from './components/forncedores/tabela/produtos';
@@ -7,17 +8,11 @@ import { Fornecedores } from './components/forncedores/tabela/produtos';
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/produtos">
-          <Produtos />
-        </Route>
-        <Route path="/fornecedores">
-          <Fornecedores />
-        </Route>
-        <Route path="/">
-          <Main />
-        </Route>
-      </Switch>
+      <Routes> {/* Use Routes em vez de Switch */}
+        <Route path="/produtos" element={<Produtos />} />
+        <Route path="/fornecedores" element={<Fornecedores />} />
+        <Route path="/" element={<Main />} />
+      </Routes>
     </Router>
   );
 }
