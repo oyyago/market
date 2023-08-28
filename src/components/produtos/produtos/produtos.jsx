@@ -57,7 +57,7 @@ export function Produtos() {
       });
       if (response.ok) {
         setEditProduto(null);
-        listarProdutos(); // Recarrega os produtos após a edição bem-sucedida
+        listarProdutos(); 
       }
     } catch (error) {
       console.error('Erro:', error);

@@ -6,7 +6,7 @@ import {
   Button,
 } from './styled';
 
-export function Post({ cancel }) {
+export function Post({ cancel,listarFornecedores }) {
   const [novoFornecedor, setNovoFornecedor] = useState({
     nome: '',
     telefone: '',
@@ -14,27 +14,32 @@ export function Post({ cancel }) {
     endereco: ''
   });
 
-  const adicionarNovoFornecedor = () => {
-    fetch('http://localhost:5000/forncedor/post', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        nome: novoFornecedor.nome,
-        telefone: novoFornecedor.telefone,
-        email: novoFornecedor.email,
-        endereco: novoFornecedor.endereco,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.error('Erro:', error);
+  const adicionarNovoFornecedor = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/fornecedor/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome: novoFornecedor.nome,
+          telefone: novoFornecedor.telefone,
+          email: novoFornecedor.email,
+          endereco: novoFornecedor.endereco,
+        }),
       });
+  
+      if (response.ok) {
+        cancel();
+        listarFornecedores();
+      } else {
+        console.error('Erro ao criar o fornecedor.');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+    }
   };
+  
 
   return (
     <Container>

@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal } from '../../modal/modal';
 import { Post } from '../post/post';
-import { EditFornecedor } from '../update/update';
-import axios from 'axios';
-
 
 export function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
-  const [editFornecedor, setEditFornecedor] = useState(null); 
+  const [editFornecedor, setEditFornecedor] = useState(null);
   const [addModalIsOpen, setAddModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
 
@@ -18,14 +15,14 @@ export function Fornecedores() {
 
   const listarFornecedores = async () => {
     try {
-      const response = await fetch('http://localhost:5000/fornecedores'); 
+      const response = await fetch('http://localhost:5000/fornecedores');
       const data = await response.json();
       setFornecedores(data.dados);
     } catch (error) {
       console.error('Erro:', error);
     }
   };
-  
+
   const salvarEdicao = async (dadosEditados) => {
     try {
       console.log('Fornecedor ID:', editFornecedor.fornecedor_id);
@@ -41,26 +38,22 @@ export function Fornecedores() {
           email: dadosEditados.email,
         }),
       });
-  
+
       if (!response.ok) {
         console.error('Error:', response.status, response.statusText);
       } else if (response.status === 201) {
         console.log('Atualizado com sucesso');
         setEditFornecedor(null);
-        listarFornecedores(); 
+        listarFornecedores();
       }
     } catch (error) {
       console.error('Erro:', error);
     }
   };
-  
-  
-  
-
 
   const excluirFornecedor = async (fornecedor_id) => {
     try {
-      const response = await fetch('http://localhost:5000/forncedores/delete', {
+      const response = await fetch('http://localhost:5000/fornecedores/delete', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +63,6 @@ export function Fornecedores() {
       if (response.ok) {
         setFornecedores(fornecedores.filter((fornecedor) => fornecedor.fornecedor_id !== fornecedor_id));
       }
-
     } catch (error) {
       console.error('Erro:', error);
     }
@@ -90,11 +82,9 @@ export function Fornecedores() {
     setEditModalIsOpen(true);
   };
 
-
   const cadastrarFornecedor = () => {
     setAddModalIsOpen(true);
   };
-
 
   return (
     <>
@@ -103,7 +93,7 @@ export function Fornecedores() {
         <button className='btn btn-primary' onClick={cadastrarFornecedor}>Adicionar fornecedor</button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={() => setAddModalIsOpen(false)}>
-          <Post cancel={cancelarCriacao} />
+          <Post cancel={cancelarCriacao} listarFornecedores={listarFornecedores} />
         </Modal>
 
         <table className="table table-striped-columns">
