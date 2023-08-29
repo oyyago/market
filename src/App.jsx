@@ -8,10 +8,11 @@ import { Fornecedores } from './components/forncedores/tabela/produtos';
 function App() {
   return (
     <Router>
-      <Routes> {/* Use Routes em vez de Switch */}
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/fornecedores" element={<Fornecedores />} />
-        <Route path="/" element={<Main />} />
+      <Routes>
+        <Route path="/" element={<Main />} >
+        <Route path="produtos" element={<Produtos />} />
+        <Route path="fornecedores" element={<Fornecedores />} />
+      </Route>
       </Routes>
     </Router>
   );

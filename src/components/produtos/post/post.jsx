@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Title,
@@ -11,11 +11,12 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
 
   const [novoProduto, setNovoProduto] = useState({
     nome_produto: '',
-    preco_unidade: 0,
-    fornecedor_id: 0,
-    categoria_id: 0,
-    estoque: 0,
+    preco_unidade: "",
+    fornecedor_id: "",
+    categoria_id: "",
+    estoque: "",
   });
+  const [fornecedorState, setFornecedorState] = useState([]);
 
   const adicionarNovoProduto = async () => {
     try {
@@ -44,6 +45,21 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
     }
   };
 
+  const getFornecedor = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/fornecedores');
+      const data = await response.json();
+      setFornecedorState(data.dados);
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  };
+
+  useEffect(() => {
+    getFornecedor();
+  },
+    []);
+
   return (
     <Container style={{ display: isOpen ? 'block' : 'none' }}>
       <Title>Adicionar Novo Produto</Title>
@@ -63,14 +79,21 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
           setNovoProduto({ ...novoProduto, preco_unidade: e.target.value })
         }
       />
-      <Input
-        type="number"
-        placeholder="Fornecedor ID"
-        value={novoProduto.fornecedor_id}
-        onChange={(e) =>
-          setNovoProduto({ ...novoProduto, fornecedor_id: e.target.value })
-        }
-      />
+<select
+  type="number"
+  placeholder="Fornecedor ID"
+  value={novoProduto.fornecedor_id}
+  onChange={(e) =>
+    setNovoProduto({ ...novoProduto, fornecedor_id: e.target.value })
+  }
+>
+        <option value="">Selecione um fornecedor</option>
+        {fornecedorState.map((fornecedor) => (
+          <option key={fornecedor.fornecedor_id} value={fornecedor.fornecedor_id}>
+            {fornecedor.nome}
+          </option>
+        ))}
+      </select>
       <Input
         type="number"
         placeholder="Categoria ID"
