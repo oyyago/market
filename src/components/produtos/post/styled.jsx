@@ -30,3 +30,11 @@ export const Button = styled.button`
   border-radius: 3px;
   cursor: pointer;
 `;
+
+
+export const Select = styled.select`
+  font-size: 0.9rem;
+  padding: 7px 7px;
+  margin-right:20px;
+
+`

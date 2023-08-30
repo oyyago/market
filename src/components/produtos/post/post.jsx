@@ -4,7 +4,9 @@ import {
   Title,
   Input,
   Button,
+  Select
 } from './styled';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recarregarProdutos como propriedade
   console.log('isOpen:', isOpen);
@@ -17,6 +19,7 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
     estoque: "",
   });
   const [fornecedorState, setFornecedorState] = useState([]);
+  const [categoriaState, setCategoriaState] = useState([]);
 
   const adicionarNovoProduto = async () => {
     try {
@@ -58,7 +61,24 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
   useEffect(() => {
     getFornecedor();
   },
-    []);
+  []);
+
+
+
+  const getCategoria = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/categorias');
+      const data = await response.json();
+      setCategoriaState(data.dados);
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  };
+
+  useEffect(() => {
+    getCategoria();
+  },
+  []);
 
   return (
     <Container style={{ display: isOpen ? 'block' : 'none' }}>
@@ -79,7 +99,7 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
           setNovoProduto({ ...novoProduto, preco_unidade: e.target.value })
         }
       />
-<select
+<Select
   type="number"
   placeholder="Fornecedor ID"
   value={novoProduto.fornecedor_id}
@@ -93,15 +113,24 @@ export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recar
             {fornecedor.nome}
           </option>
         ))}
-      </select>
-      <Input
+      </Select>
+      <Select
         type="number"
         placeholder="Categoria ID"
         value={novoProduto.categoria_id}
         onChange={(e) =>
           setNovoProduto({ ...novoProduto, categoria_id: e.target.value })
         }
-      />
+      >
+                <option value="">Selecione uma Categoria</option>
+        {categoriaState.map((categoria) => (
+          <option key={categoria.categoria_id} value={categoria.categoria_id}>
+            {categoria.nome_categoria}
+          </option>
+        ))}
+
+      </Select>
+
       <Input
         placeholder="Estoque"
         value={novoProduto.estoque}

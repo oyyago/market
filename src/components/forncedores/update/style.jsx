@@ -51,3 +51,10 @@ export const EditFornecedorCancelButton = styled.button`
     background-color: #c82333;
   }
 `;
+
+export const Select = styled.select`
+  font-size: 0.9rem;
+  padding: 7px 7px;
+  margin-right:20px;
+
+`;

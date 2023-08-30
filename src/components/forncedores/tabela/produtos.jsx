@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal } from '../../modal/modal';
 import { Post } from '../post/post';
+import { EditFornecedor } from '../update/update'
 
 export function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
@@ -32,10 +33,11 @@ export function Fornecedores() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          fornecedor_id: editFornecedor.fornecedor_id,
           nome: dadosEditados.nome_fornecedor,
           telefone: dadosEditados.contato,
           email: dadosEditados.email,
+          endereco_id:dadosEditados.endereco_id,
+          fornecedor_id: editFornecedor.fornecedor_id
         }),
       });
 
@@ -100,7 +102,10 @@ export function Fornecedores() {
           <thead>
             <tr>
               <th scope="col">Nome do Fornecedor</th>
-              <th scope="col">Ações</th>
+              <th scope="col">telefone</th>
+              <th scope='col'>email</th>
+              <th scope='col'>endereco</th>
+
             </tr>
           </thead>
           <tbody>
@@ -109,6 +114,7 @@ export function Fornecedores() {
                 <td>{fornecedor.nome}</td>
                 <td>{fornecedor.telefone}</td>
                 <td>{fornecedor.email}</td>
+                <td>{fornecedor.rua} {fornecedor.bairro}</td>
                 <td>
                   <button className="btn btn-secondary btn-lg" onClick={() => excluirFornecedor(fornecedor.fornecedor_id)}>Excluir</button>
                   <button className="btn btn-primary btn-lg" onClick={() => iniciarEdicao(fornecedor)}>Editar</button>
