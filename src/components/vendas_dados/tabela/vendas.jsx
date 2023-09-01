@@ -39,6 +39,9 @@ export function Vendas() {
     }
   };
 
+  const cancelarCriacao = () => {
+    setAddModalIsOpen(false);
+  };
   return (
     <>
       <div>
@@ -46,7 +49,7 @@ export function Vendas() {
         <button className='btn btn-primary' onClick={() => setAddModalIsOpen(true)}>Adicionar venda</button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={() => setAddModalIsOpen(false)}>
-          <PostVenda listarVendas={listarVendas} />
+          <PostVenda cancel={cancelarCriacao} listarVendas={listarVendas}   />
         </Modal>
 
         <table className="table table-striped-columns">
