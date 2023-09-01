@@ -51,13 +51,16 @@ export function Produtos() {
         body: JSON.stringify({
           nome: dadosEditados.nome_produto,
           preco: dadosEditados.preco_unidade,
+          fornecedor_id:dadosEditados.fornecedor_id,
+          categoria_id:dadosEditados.categoria_id,
           id: editProduto.produto_id,
+
         }),
 
       });
       if (response.ok) {
         setEditProduto(null);
-        listarProdutos(); 
+        listarProdutos();
       }
     } catch (error) {
       console.error('Erro:', error);
@@ -88,8 +91,8 @@ export function Produtos() {
         <button className='btn btn-primary' onClick={cadastrarProduto}>Adicionar produto</button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={setAddModalIsOpen}>
-  <Post cancel={cancelarCriacao} isOpen={addModalIsOpen} recarregarProdutos={listarProdutos} />
-</Modal>
+          <Post cancel={cancelarCriacao} isOpen={addModalIsOpen} recarregarProdutos={listarProdutos} />
+        </Modal>
 
 
         <table className="table table-striped-columns">
@@ -99,6 +102,7 @@ export function Produtos() {
               <th scope="col">Preço</th>
               <th scope="col">Fornecedor</th>
               <th scope="col">Categoria</th>
+              <th scope="col">Estoque</th>
               <th scope="col"> Ações</th>
             </tr>
           </thead>
@@ -109,10 +113,11 @@ export function Produtos() {
                 <td>R$: {produto.preco_unidade}</td>
                 <td>{produto.nome}</td>
                 <td>{produto.nome_categoria}</td>
+                <td>{produto.estoque}</td>
                 <td>
-                <button className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
-<button className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(produto)}>Editar</button>
-</td>
+                  <button className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
+                  <button className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(produto)}>Editar</button>
+                </td>
               </tr>
             ))}
           </tbody>
