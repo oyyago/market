@@ -15,9 +15,8 @@ export function PostVenda({ cancel, listarVendas }) {
     funcionario_id: '',
     cliente_id: '',
     valor_total: '',
-    produtos: []
+    produtos: {}
   });
-
 
   const [startDate, setStartDate] = useState(new Date());
   const [funcionariosState, setFuncionariosState] = useState([]);
@@ -63,8 +62,11 @@ export function PostVenda({ cancel, listarVendas }) {
 
   useEffect(() => {
     getFuncionarios();
+    getClientes();
+    getProdutos();
+    return () => { }
   },
-    []);
+  []);
 
   const getClientes = async () => {
     try {
@@ -76,14 +78,7 @@ export function PostVenda({ cancel, listarVendas }) {
     }
   };
 
-  useEffect(() => {
-    getClientes();
-  },
-    []);
-
-
-
-  const getProdutos = async () => {
+  async function getProdutos() {
     try {
       const response = await fetch('http://localhost:5000/produtos');
       const data = await response.json();
@@ -91,22 +86,19 @@ export function PostVenda({ cancel, listarVendas }) {
     } catch (error) {
       console.error('Erro:', error);
     }
-  };
-
-  useEffect(() => {
-    getProdutos();
-  }, []);
+  }
+  
+  // Usecontext , useMemo.
 
   const adicionarProduto = (produtoId, quantidade) => {
     const novoProduto = {
       produto_id: produtoId,
       quantidade: quantidade
     };
-
-    setNovaVenda({ ...novaVenda, produtos: [...novaVenda.produtos, novoProduto] });
+    console.log({ ...novaVenda, produtos:{ ...novaVenda.produtos, novoProduto }});
+    setNovaVenda({ ...novaVenda, produtos:{ ...novaVenda.produtos, novoProduto }});
   };
 
-  
   return (
     <Container>
       <Title>Adicionar Nova Venda</Title>
@@ -173,13 +165,7 @@ export function PostVenda({ cancel, listarVendas }) {
           </option>
         ))}
       </Select>
-      <ul>
-        {novaVenda.produtos.map((produto, index) => (
-          <li key={index}>
-            Produto: {produto.produto_id}, Quantidade: {produto.quantidade}
-          </li>
-        ))}
-      </ul>
+
 
       <Button onClick={adicionarNovaVenda}>Adicionar Venda</Button>
       <Button onClick={cancel}>Cancelar</Button>
