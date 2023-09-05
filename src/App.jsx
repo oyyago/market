@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Ob
 import { Main } from './components/main';
 import { Produtos } from './components/produtos/produtos/produtos';
 import { Fornecedores } from './components/forncedores/tabela/produtos';
-import { Vendas } from './components/vendas_dados/tabela/vendas';
+import { Funcionarios } from './components/funcionarios/funcionarios/funcionarios';
 
 function App() {
   return (
@@ -13,7 +13,8 @@ function App() {
         <Route path="/" element={<Main />} >
         <Route path="produtos" element={<Produtos />} />
         <Route path="fornecedores" element={<Fornecedores />} />
-        <Route path="vendas" element={<Vendas />}></Route>
+        <Route path="funcionarios" element={<Funcionarios />} />
+
       </Route>
       </Routes>
     </Router>

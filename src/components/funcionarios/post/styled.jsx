@@ -38,4 +38,3 @@ export const Select = styled.select`
   margin-right:20px;
 
 `
-

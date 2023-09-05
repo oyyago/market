@@ -16,7 +16,7 @@ export function Main() {
                   <Link to="/fornecedores">Fornecedores</Link>
                 </li>
                 <li>
-                  <Link to="/vendas">Vendas</Link>
+                  <Link to="/funcionarios">Funcionarios</Link>
                 </li>
           </ul>
         </div>
