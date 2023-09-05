@@ -102,6 +102,7 @@ export function Funcionarios() {
               <th scope="col">Valor Hora</th>
               <th scope="col">Cargo</th>
               <th scope="col">telefone</th>
+              <th scope="col">Email</th>
               <th scope="col">data contratação</th>
 
             </tr>
@@ -113,6 +114,7 @@ export function Funcionarios() {
                 <td>R$: {funcionario.valor_por_hora}</td>
                 <td>{funcionario.cargo}</td>
                 <td>{funcionario.telefone}</td>
+                <td>{funcionario.email}</td>
                 <td>{funcionario.data_contratacao}</td>
                 <td>
                   <button className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirFuncionario(funcionario.funcionario_id)}>Excluir</button>
