@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import EditProduto from '../update/update';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AiOutlinePlus, AiFillEdit, AiFillDelete }  from  'react-icons/ai'
 import { Modal } from '../../modal/modal';
 import { Post } from '../post/post';
 
@@ -88,7 +89,7 @@ export function Funcionarios() {
     <>
       <div>
         <h2>Lista de Funcionários</h2>
-        <button className='btn btn-primary' onClick={cadastrarFuncionario}>Adicionar funcionário</button>
+        <button className='btn btn-primary' onClick={cadastrarFuncionario}>Adicionar funcionário <AiOutlinePlus/></button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={setAddModalIsOpen}>
           <Post cancel={cancelarCriacao} isOpen={addModalIsOpen} recarregarFuncionarios={listarFuncionarios} />
@@ -117,8 +118,8 @@ export function Funcionarios() {
                 <td>{funcionario.email}</td>
                 <td>{funcionario.data_contratacao}</td>
                 <td>
-                  <button className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirFuncionario(funcionario.funcionario_id)}>Excluir</button>
-                  <button className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(funcionario)}>Editar</button>
+                  <button style={{marginRight:"10px"}} className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirFuncionario(funcionario.funcionario_id)}><AiFillDelete/></button>
+                  <button className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(funcionario)}><AiFillEdit/></button>
                 </td>
               </tr>
             ))}

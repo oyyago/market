@@ -115,8 +115,8 @@ export function Produtos() {
                 <td>{produto.nome_categoria}</td>
                 <td>{produto.estoque}</td>
                 <td>
-                  <button className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
-                  <button className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(produto)}>Editar</button>
+                  <button style={{marginRight:"10px"}} className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
+                  <button  className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(produto)}>Editar</button>
                 </td>
               </tr>
             ))}

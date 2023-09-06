@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Observe que estamos usando Routes em vez de Switch
 import { Main } from './components/main';
 import { Produtos } from './components/produtos/produtos/produtos';
-import { Fornecedores } from './components/forncedores/tabela/produtos';
+import { Fornecedores } from './components/forncedores/tabela/fornecedores';
 import { Funcionarios } from './components/funcionarios/funcionarios/funcionarios';
 
 function App() {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AiOutlinePlus, AiFillEdit, AiFillDelete }  from  'react-icons/ai'
 import { Modal } from '../../modal/modal';
 import { Post } from '../post/post';
 import { EditFornecedor } from '../update/update'
@@ -92,7 +93,7 @@ export function Fornecedores() {
     <>
       <div>
         <h2>Lista de fornecedores</h2>
-        <button className='btn btn-primary' onClick={cadastrarFornecedor}>Adicionar fornecedor</button>
+        <button className='btn btn-primary' onClick={cadastrarFornecedor}>Adicionar <AiOutlinePlus/></button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={() => setAddModalIsOpen(false)}>
           <Post cancel={cancelarCriacao} listarFornecedores={listarFornecedores} />
@@ -116,8 +117,8 @@ export function Fornecedores() {
                 <td>{fornecedor.email}</td>
                 <td>{fornecedor.rua} {fornecedor.bairro}</td>
                 <td>
-                  <button className="btn btn-secondary btn-lg" onClick={() => excluirFornecedor(fornecedor.fornecedor_id)}>Excluir</button>
-                  <button className="btn btn-primary btn-lg" onClick={() => iniciarEdicao(fornecedor)}>Editar</button>
+                  <button style={{marginRight:"10px"}} className="btn btn-secondary btn-lg" onClick={() => excluirFornecedor(fornecedor.fornecedor_id)}><AiFillDelete/></button>
+                  <button className="btn btn-primary btn-lg" onClick={() => iniciarEdicao(fornecedor)}><AiFillEdit/></button>
                 </td>
               </tr>
             ))}
