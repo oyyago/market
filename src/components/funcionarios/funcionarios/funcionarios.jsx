@@ -89,17 +89,17 @@ export function Funcionarios() {
     <>
       <div>
         <h2>Lista de Funcionários</h2>
-        <button className='btn btn-primary' onClick={cadastrarFuncionario}>Adicionar funcionário <AiOutlinePlus/></button>
+        <button className='btn btn-primary' style={{margin:"10px 0px 20px 0px "}} onClick={cadastrarFuncionario}>Adicionar funcionário <AiOutlinePlus/></button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={setAddModalIsOpen}>
           <Post cancel={cancelarCriacao} isOpen={addModalIsOpen} recarregarFuncionarios={listarFuncionarios} />
         </Modal>
 
 
-        <table className="table table-striped-columns">
+        <table className="table">
           <thead>
             <tr>
-              <th scope="col">Nome do Funcionário</th>
+              <th scope="col">Nome</th>
               <th scope="col">Valor Hora</th>
               <th scope="col">Cargo</th>
               <th scope="col">telefone</th>
@@ -118,8 +118,8 @@ export function Funcionarios() {
                 <td>{funcionario.email}</td>
                 <td>{funcionario.data_contratacao}</td>
                 <td>
-                  <button style={{marginRight:"10px"}} className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirFuncionario(funcionario.funcionario_id)}><AiFillDelete/></button>
-                  <button className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(funcionario)}><AiFillEdit/></button>
+                  <button style={{marginRight:"10px"}} className="btn btn-primary" onClick={() => iniciarEdicao(funcionario)}><AiFillEdit/></button>
+                  <button  className="btn btn-danger" onClick={() => excluirFuncionario(funcionario.funcionario_id)}><AiFillDelete/></button>
                 </td>
               </tr>
             ))}

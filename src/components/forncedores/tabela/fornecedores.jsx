@@ -93,13 +93,13 @@ export function Fornecedores() {
     <>
       <div>
         <h2>Lista de fornecedores</h2>
-        <button className='btn btn-primary' onClick={cadastrarFornecedor}>Adicionar <AiOutlinePlus/></button>
+        <button className='btn btn-primary' style={{margin:"10px 0px 20px 0px "}} onClick={cadastrarFornecedor}>Adicionar <AiOutlinePlus/></button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={() => setAddModalIsOpen(false)}>
           <Post cancel={cancelarCriacao} listarFornecedores={listarFornecedores} />
         </Modal>
 
-        <table className="table table-striped-columns">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Nome do Fornecedor</th>
@@ -117,8 +117,8 @@ export function Fornecedores() {
                 <td>{fornecedor.email}</td>
                 <td>{fornecedor.rua} {fornecedor.bairro}</td>
                 <td>
-                  <button style={{marginRight:"10px"}} className="btn btn-secondary btn-lg" onClick={() => excluirFornecedor(fornecedor.fornecedor_id)}><AiFillDelete/></button>
-                  <button className="btn btn-primary btn-lg" onClick={() => iniciarEdicao(fornecedor)}><AiFillEdit/></button>
+                  <button  style={{marginRight:"10px"}} className="btn btn-primary" onClick={() => iniciarEdicao(fornecedor)}><AiFillEdit/></button>
+                  <button  className="btn btn-danger"  onClick={() => excluirFornecedor(fornecedor.fornecedor_id)}><AiFillDelete/></button>
                 </td>
               </tr>
             ))}

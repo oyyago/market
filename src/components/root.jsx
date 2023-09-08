@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/style.css'
 import { Link,Outlet } from 'react-router-dom';
 
-export function Main() {
+export function Root() {
   return (
     <div className="body">
       <div className="left_col">
@@ -10,13 +10,13 @@ export function Main() {
           <h3>General</h3>
           <ul className="side-menu">
                 <li>
-                  <Link to="/produtos">Produtos</Link>
+                  <Link to={`/produtos`}>Produtos</Link>
                 </li>
                 <li>
-                  <Link to="/fornecedores">Fornecedores</Link>
+                  <Link to={`/fornecedores`}>Fornecedores</Link>
                 </li>
                 <li>
-                  <Link to="/funcionarios">Funcionarios</Link>
+                  <Link to={`/funcionarios`}>Funcionarios</Link>
                 </li>
           </ul>
         </div>

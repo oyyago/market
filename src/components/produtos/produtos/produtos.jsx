@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EditProduto from '../update/update';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AiOutlinePlus, AiFillEdit, AiFillDelete }  from  'react-icons/ai'
 import { Modal } from '../../modal/modal';
 import { Post } from '../post/post';
 
@@ -88,14 +89,14 @@ export function Produtos() {
     <>
       <div>
         <h2>Lista de Produtos</h2>
-        <button className='btn btn-primary' onClick={cadastrarProduto}>Adicionar produto</button>
+        <button className='btn btn-primary' style={{margin:"10px 0px 20px 0px "}} onClick={cadastrarProduto}>Adicionar produto <AiOutlinePlus/></button>
 
         <Modal isOpen={addModalIsOpen} setModalOpen={setAddModalIsOpen}>
           <Post cancel={cancelarCriacao} isOpen={addModalIsOpen} recarregarProdutos={listarProdutos} />
         </Modal>
 
 
-        <table className="table table-striped-columns">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Nome do Produto</th>
@@ -115,8 +116,8 @@ export function Produtos() {
                 <td>{produto.nome_categoria}</td>
                 <td>{produto.estoque}</td>
                 <td>
-                  <button style={{marginRight:"10px"}} className="btn btn-secondary btn-lg btn mr-2" onClick={() => excluirProduto(produto.produto_id)}>Excluir</button>
-                  <button  className="btn btn-primary btn-lg btn" onClick={() => iniciarEdicao(produto)}>Editar</button>
+                  <button style={{marginRight:"10px"}} className="btn btn-primary" onClick={() => iniciarEdicao(produto)}><AiFillEdit/></button>
+                  <button  className="btn btn-danger" onClick={() => excluirProduto(produto.produto_id)}><AiFillDelete /> </button>
                 </td>
               </tr>
             ))}

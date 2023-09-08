@@ -99,7 +99,7 @@ export function Post({ cancel, isOpen, recarregarFuncionarios }) {
         }
       />
       <Input
-        type="text"
+        type="number"
         placeholder="Telefone"
         value={novoFuncionario.telefone}
         onChange={(e) =>
@@ -123,7 +123,7 @@ export function Post({ cancel, isOpen, recarregarFuncionarios }) {
         }
       />
       <Input
-        type="text"
+        type="number"
         placeholder="Salário"
         value={novoFuncionario.valor_por_hora}
         onChange={(e) =>
