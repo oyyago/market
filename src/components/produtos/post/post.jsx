@@ -8,7 +8,7 @@ import {
 } from './styled';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function Post({ cancel, isOpen, recarregarProdutos }) { // Adicione recarregarProdutos como propriedade
+export function Post({ cancel, isOpen, recarregarProdutos }) { 
   console.log('isOpen:', isOpen);
 
   const [novoProduto, setNovoProduto] = useState({
