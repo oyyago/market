@@ -8,7 +8,7 @@ import {
 } from './styled';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function Post({ cancel, isOpen, recarregarProdutos }) { 
+export function Post({ cancel, isOpen, recarregarProdutos }) {
   console.log('isOpen:', isOpen);
 
   const [novoProduto, setNovoProduto] = useState({
@@ -61,7 +61,7 @@ export function Post({ cancel, isOpen, recarregarProdutos }) {
   useEffect(() => {
     getFornecedor();
   },
-  []);
+    []);
 
 
 
@@ -78,7 +78,7 @@ export function Post({ cancel, isOpen, recarregarProdutos }) {
   useEffect(() => {
     getCategoria();
   },
-  []);
+    []);
 
   return (
     <Container style={{ display: isOpen ? 'block' : 'none' }}>
@@ -99,14 +99,14 @@ export function Post({ cancel, isOpen, recarregarProdutos }) {
           setNovoProduto({ ...novoProduto, preco_unidade: e.target.value })
         }
       />
-<Select
-  type="number"
-  placeholder="Fornecedor ID"
-  value={novoProduto.fornecedor_id}
-  onChange={(e) =>
-    setNovoProduto({ ...novoProduto, fornecedor_id: e.target.value })
-  }
->
+      <Select
+        type="number"
+        placeholder="Fornecedor ID"
+        value={novoProduto.fornecedor_id}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, fornecedor_id: e.target.value })
+        }
+      >
         <option value="">Selecione um fornecedor</option>
         {fornecedorState.map((fornecedor) => (
           <option key={fornecedor.fornecedor_id} value={fornecedor.fornecedor_id}>
@@ -122,7 +122,7 @@ export function Post({ cancel, isOpen, recarregarProdutos }) {
           setNovoProduto({ ...novoProduto, categoria_id: e.target.value })
         }
       >
-                <option value="">Selecione uma Categoria</option>
+        <option value="">Selecione uma Categoria</option>
         {categoriaState.map((categoria) => (
           <option key={categoria.categoria_id} value={categoria.categoria_id}>
             {categoria.nome_categoria}

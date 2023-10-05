@@ -10,6 +10,9 @@
   text-align: center;
 }
 
+a{
+  color: white;
+}
 .side-menu{
   padding: 0;
   width: 100%;

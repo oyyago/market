@@ -15,7 +15,6 @@ function EditProduto({ produto, onSave, onCancel }) {
   const [fornecedor_id, setFornecedor_id] = useState(produto.fornecedor_id);
   const [categoria_id, setCategoria_id] = useState(produto.categoria_id);
 
-
   const handleSave = () => {
     onSave({ nome_produto, preco_unidade, fornecedor_id,categoria_id });
   };

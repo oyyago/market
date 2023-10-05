@@ -6,7 +6,7 @@ export function Root() {
   return (
     <div>
       <div className="left_col">
-        <h3>Admin Project</h3>
+          <Link to={`/`}  > <h3>Admin Project </h3></Link>
           <ul className="side-menu">
             <li>
               <Link to={`/produtos`}>Produtos</Link>
