@@ -1,1 +1,4 @@
-<p>products works!</p>
+<div *ngFor="let product of listProducts">
+    <p>{{ product.productName }}</p>
+    <p>{{ product.stock }}</p>
+</div>
