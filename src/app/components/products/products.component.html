@@ -1,4 +1,21 @@
-<div *ngFor="let product of listProducts">
-    <p>{{ product.productName }}</p>
-    <p>{{ product.stock }}</p>
-</div>
+<h2>Product List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Product name </th>
+            <th scope="col">price</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Category</th>
+            <th scope="col">stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng *ngFor="let product of listProducts ">
+            <td>{{ product.productName }}</td>
+            <td>{{ product.unitPrice }}</td>
+            <td>{{ product.supplierId }}</td>
+            <td>{{ product.categoryId }}</td>
+            <td>{{ product.stock }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,19 @@
+<h2>Suppliers List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Supplier name </th>
+            <th scope="col">phone</th>
+            <th scope="col">email</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng *ngFor="let supplier of listSupplier ">
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.phone }}</td>
+            <td>{{ supplier.email }}</td>
+            <td><button routerLink="/suppliers/deleteSupplier/{{supplier.supplierId}}">delete</button></td>
+        </tr>
+    </tbody>
+</table>
