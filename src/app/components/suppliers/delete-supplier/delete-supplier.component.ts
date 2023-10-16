@@ -2,6 +2,7 @@ import { Supplier } from './../supplier';
 import { Component, OnInit } from '@angular/core';
 import { SuppliersService } from '../suppliers.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-delete-supplier',
@@ -23,21 +24,27 @@ export class DeleteSupplierComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const supplierId = this.route.snapshot.paramMap.get('id')
-    this.service.getById(parseInt(supplierId!)).subscribe((supplier) => {
-      this.supplier = supplier;
-    })
-    console.error(this.supplier)
+    const supplierId = this.route.snapshot.paramMap.get('id');
+    if (supplierId !== null && supplierId !== undefined) {
+      const id = parseInt(supplierId);
+      this.service.getById(id).subscribe((supplier) => {
+        this.supplier = supplier;
+        console.error(this.supplier);
+      });
+    }
+  }
+  deleteSupplier() {
+    const supplierId = this.route.snapshot.paramMap.get('id');
+    if (supplierId) {
+      this.service.deleteSupplier(parseInt(supplierId)).subscribe(()=>{
+        this.router .navigate(['/suppliers']);
+      }
+      );
+    }
   }
 
-  deleteSupplier() {
-    if (this.supplier.supplierId) {
-      this.service.deleteSupplier(this.supplier.supplierId).subscribe(() => {
-        this.router.navigate(['/suppliers'])
-      })
-    }
-    console.error(this.supplier.name)
-  }
+
+
 
   cancel() {
     this.router.navigate(['/suppliers'])
